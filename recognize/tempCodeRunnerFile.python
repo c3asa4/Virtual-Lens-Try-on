@@ -1,0 +1,78 @@
+import cv2
+import dlib
+import imutils
+import numpy as np
+from sklearn.cluster import KMeans
+from imutils import face_utils
+
+def determine_face_shape(line1, line2, line3, line4, angle):
+    # Your face shape determination logic goes here
+    # Implement your logic to determine face shape based on the facial landmarks
+    # Example: Replace this with your own logic
+    if angle < 160:
+        if line3 > line1:
+            return "Heart"
+        else:
+            return "Squared"
+    else:
+        if line4 > line2:
+            return "Oval"
+        else:
+            return "Oblong"
+
+def draw_landmarks(frame, shape):
+    for (x, y) in shape:
+        cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
+
+def main():
+    detector = dlib.get_frontal_face_detector()
+    predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+
+    cap = cv2.VideoCapture(0)
+
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = detector(gray, 0)
+
+        for face in faces:
+            shape = predictor(gray, face)
+            shape = face_utils.shape_to_np(shape)
+
+            # Example: Extract relevant landmarks
+            line1 = np.linalg.norm(shape[1] - shape[15])
+            line2 = np.linalg.norm(shape[4] - shape[12])
+            line3 = np.linalg.norm(shape[3] - shape[13])
+            line4 = np.linalg.norm(shape[8] - shape[8])
+
+            # Example: Calculate face angle
+            ax, ay = shape[0]
+            bx, by = shape[4]
+            cx, cy = shape[5]
+            alpha = np.arctan2(cy - ay, cx - ax) - np.arctan2(by - ay, bx - ax)
+            angle = np.degrees(alpha)
+            angle = abs(180 - angle)
+
+            # Determine face shape
+            face_shape = determine_face_shape(line1, line2, line3, line4, angle)
+
+            # Draw landmarks in a separate frame
+            landmarks_frame = frame.copy()
+            draw_landmarks(landmarks_frame, shape)
+            cv2.imshow("Facial Landmarks", landmarks_frame)
+
+            # Draw face shape on the original frame
+            cv2.putText(frame, f"Face Shape: {face_shape}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+            cv2.imshow("Face Shape Detection", frame)
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()

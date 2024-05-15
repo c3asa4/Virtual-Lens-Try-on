@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VUE</title>
+  <script src="{% static 'script.js' %}"></script>
+  <!-- <link rel="stylesheet" href="{% static 'script.js' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<style>
+  .tdbtn{
+    background-color: #00B5A5;
+    padding: 7px 15px;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+</style>
+<body>
+  <class class="navbar">
+    <class class="ham w-3">
+      <div id="menu" onclick="onClickMenu()"> 
+        <div id="bar1" class="bar"></div>
+        <div id="bar2"class="bar"></div>
+        <div id="bar3"class="bar"></div>
+      </div>
+      <ul class="nav  " id="nav">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">CONTACT</a></li>
+        <li><a href="#">ABOUT US</a></li>
+        <li><a href="#">MODEL FACES</a></li>
+      </ul>
+    </class>
+  <div class="header1 w-3">
+    <img src="{% static 'images/logo.png' %}" alt="VUE">
+  </div>
+    <!-- <input type="text" placeholder="What are you looking for?"> -->
+    <div class="head-right w-3">
+      <div style="padding: 0 0.5vw;">Track Order</div>
+      <div style="padding: 0 0.5vw;"><a href="/signup">Sign in & Sign up</a></div>
+      <!-- <div style="padding: 0 0.5vw;">Sign In & Sign Up</div> -->
+      <div style="padding: 0 0.5vw;">Wishlist</div>
+      <div style="padding: 0 0.5vw;">Cart</div>
+    </div>
+
+</class>
+  <div class="header2">
+    <div class="text-area">
+      <div style="padding: 0 0.5vw;">NEW ARRIVALS</div>
+      <div style="padding: 0 0.5vw;">EYEGLASSES</div>
+      <div style="padding: 0 0.5vw;">COMPUTER EYEGLASSES</div>
+      <div style="padding: 0 0.5vw;">SUNGLASSES</div>
+      <div style="padding: 0 0.5vw;">PRESCRIPTION GLASSES</div>
+    </div>
+    <a href="/try_on" class="tdbtn">3D TRY ON</a>
+  </div>
+
+  
+  <img src="{% static 'images/Section.png' %}" alt="" width="100%">
+
+<section class="container">
+  <div class="slider-wrapper">
+    <div class="slider">
+      <img id="slide-1" src="{% static 'images/Frame 427320915.png' %}" height="50%" >
+      <img id="slide-2" src="{% static 'images/Frame 427320916.png' %}" height="50%" >
+    </div>
+    <div class="slider-nav">
+      <a href="#slide-1"></a>
+      <a href="#slide-2"></a>
+    </div>
+  </div>
+</section>
+
+  <div class="mid">
+    <img src="{% static 'images/spec.PNG' %}" alt="">
+    <div class="text">
+      <div class="text1">The More, The Better!</div>
+      <div class="text2">BUY 1 GET 1 FREE</div>
+      <div class="text3">Starting at $59 with Anti-Glare Lenses</div>
+      <button>Shop Now</button>
+    </div>
+    <img src="{% static 'images/person.PNG' %}" alt="">
+  </div>
+  <img src="{% static 'images/Section2.png' %}" alt="" width="100%" style="margin: 2vh 0;">
+  <div class="discover">
+    <div class="text1">Our Purpose</div>
+    <div class="text2">Do More, Be More.</div>
+    <a href="/explore" class="dis_btn">Discover</a>
+  </div>
+  <div class="new-york">
+    <img src="{% static 'images/girl1.PNG' %}" alt="">
+    <div class="text">
+      <div class="text1">
+        As Seen At <br> New York Fashion Week
+      </div>
+      <div class="text2">
+        #ViuXAshishMaharjan
+      </div>
+      <button>
+        Shop Now
+      </button>
+    </div>
+    <img src="{% static 'images/girl2.PNG' %}" alt="">
+    <script src="script.js"></script>
+    
+  </div>
+</body>
+</html>
